@@ -1,8 +1,9 @@
 // ==UserScript==
-// @name        https://github.com/volcbs/Non-JP-Novelupdates
-// @namespace   https://gist.github.com/volcbs
+// @name        Hide and remove non-JP in NovelUpdates
+// @namespace   https://github.com/volcbs/Non-JP-Novelupdates
 // @include     https://www.novelupdates.com/*
-// @version     1.0
+// @exclude     https://www.novelupdates.com/series/*
+// @version     1.1
 // @grant       none
 // ==/UserScript==
 
