@@ -1,5 +1,5 @@
 # Non-JP-Novelupdates
-Just removing all lists that are not from Japanese origin
+Just removing all lists that are not from Japanese origin in Novelupdates.
 
 Created by ChatGPT. I'm just archiving it because I don't want to forget the script. 
 
