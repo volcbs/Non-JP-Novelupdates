@@ -3,37 +3,28 @@
 // @namespace   https://github.com/volcbs/Non-JP-Novelupdates
 // @include     https://www.novelupdates.com/*
 // @exclude     https://www.novelupdates.com/series/*
-// @version     1.1
+// @version     2.0
 // @grant       none
 // ==/UserScript==
 
 // Get all rows in the table
-let rows = document.querySelectorAll("tr");
+const rows = document.querySelectorAll("tr");
 
-// Loop through all rows
-for (let i = 0; i < rows.length; i++) {
-  let row = rows[i];
+// Process each row
+rows.forEach(row => {
+  const firstCol = row.querySelector("td:nth-child(1)");
+  if (!firstCol) return;
 
-  // Get the first column in the row
-  let firstCol = row.querySelector("td:nth-child(1)");
-  if (!firstCol) continue;
+  const hasJP = firstCol.textContent.includes("[JP]");
 
-  // Get the text of the first column
-  let text = firstCol.textContent;
-
-  // If the text doesn't contain [JP], hide the row
-  if (!text.includes("[JP]")) {
-    row.style.display = "none";
-  } else {
-    // If it does contain [JP], remove it from the text
-    text = text.replace("[JP]", "");
-
-    // Keep the URL in the first column
-    let link = firstCol.querySelector("a");
-    if (link) {
-      firstCol.innerHTML = `<a href="${link.href}">${text}</a>`;
-    } else {
-      firstCol.textContent = text;
-    }
+  // Remove non-JP rows entirely
+  if (!hasJP) {
+    row.remove();
+    return;
   }
-}
+
+  // Remove ALL [JP] tags from the first column's content
+  firstCol.innerHTML = firstCol.innerHTML
+    .replace(/\[JP\]/gi, "")  // Case-insensitive removal of all [JP] instances
+    .trim();
+});
